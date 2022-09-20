@@ -27,6 +27,11 @@ h1{
     font-size: 5.5rem;
     padding: 0.75rem 0;
     cursor: pointer;
+    transition: background-color 0.2s ease-in;
+}
+
+.game-board *:hover{
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .game-board .one, .game-board .two, .game-board .three{
