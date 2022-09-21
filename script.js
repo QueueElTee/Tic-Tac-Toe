@@ -1,4 +1,5 @@
 let playerForm = document.querySelector('.player-form');
+let currentPlayerName = document.querySelector('.player-name');
 let player1 = '';
 let player2 = '';
 
@@ -25,17 +26,39 @@ playerForm.addEventListener('submit', (e) => {
 
     let currentPlayer = document.querySelector('.current-player');
     currentPlayer.style.display = 'block';
-    let currentPlayerName = document.querySelector('.player-name');
+    // let currentPlayerName = document.querySelector('.player-name');
     currentPlayerName.textContent = `${player1.name}'s `;
-    gameBoard.gameCounter++
+    // gameBoard.gameCounter++
 });
 
 const displayController = (() => {
-    if(gameBoard.gameCounter > 0){
-        if(gameBoard.gameCounter % 2 != 0){
-            console.log('X');
-        } else{
-            console.log('O');
+    // const initializeDislpay = () => {
+    //     currentPlayerName.textContent = `${player1.name}'s `;
+    //     gameBoard.gameCounter++;
+    // }
+
+    const controlDisplay = (e) => {
+        // if (gameBoard.gameCounter == 1){
+
+        // }
+
+        if(gameBoard.gameCounter > 1){
+            if(gameBoard.gameCounter % 2 != 0){
+                currentPlayerName.textContent = `${player1.name}'s `;
+                e.target.textContent = 'X';
+            } else{
+                currentPlayerName.textContent = `${player2.name}'s `;
+                e.target.textContent = 'O';
+            }
         }
     }
+    return { controlDisplay }
 })();
+
+let boardCells = document.querySelectorAll('.game-board *');
+boardCells.forEach(cell => cell.addEventListener('click', (e) => {
+    gameBoard.gameCounter++;
+    console.log(gameBoard.gameCounter);
+    displayController.controlDisplay(e);
+    console.log(e.target);
+}));
