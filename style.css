@@ -57,6 +57,8 @@ h1{
 .current-player{
     text-align: center;
     display: none;
+    font-size: 2rem;
+    margin-top: 0.5rem;
 }
 
 .game-board{

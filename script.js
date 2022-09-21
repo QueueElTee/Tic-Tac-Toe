@@ -8,7 +8,8 @@ const player = (name, marker) => {
 
 const gameBoard = (() => {
     let board = [];
-    return { board };
+    let gameCounter = 0;
+    return { board, gameCounter };
 })();
 
 playerForm.addEventListener('submit', (e) => {
@@ -19,4 +20,12 @@ playerForm.addEventListener('submit', (e) => {
 
     player1 = player(player1Name, 'X');
     player2 = player(player2Name, 'O');
+
+    playerForm.style.display = 'none';
+
+    let currentPlayer = document.querySelector('.current-player');
+    currentPlayer.style.display = 'block';
+    let currentPlayerName = document.querySelector('.player-name');
+    currentPlayerName.textContent = `${player1.name}'s `;
+    gameBoard.gameCounter++
 });
