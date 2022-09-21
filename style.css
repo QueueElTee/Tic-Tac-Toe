@@ -54,6 +54,11 @@ h1{
     background-color: black;
 }
 
+.current-player{
+    text-align: center;
+    display: none;
+}
+
 .game-board{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
