@@ -29,3 +29,13 @@ playerForm.addEventListener('submit', (e) => {
     currentPlayerName.textContent = `${player1.name}'s `;
     gameBoard.gameCounter++
 });
+
+const displayController = (() => {
+    if(gameBoard.gameCounter > 0){
+        if(gameBoard.gameCounter % 2 != 0){
+            console.log('X');
+        } else{
+            console.log('O');
+        }
+    }
+})();
