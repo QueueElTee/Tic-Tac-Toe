@@ -13,6 +13,47 @@ h1{
     font-size: 3.5rem;
 }
 
+.player-form{
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+}
+
+.player-form .input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.player-form .start-game{
+    display: flex;
+    justify-content: center;
+}
+
+.player-form .input, .player-form .input input, .player-form .start-game button{
+    font-size: 1.15rem;
+}
+
+.player-form .input input{
+    margin-left: 0.25rem;
+    padding: 0.25rem;
+    outline: none;
+}
+
+.player-form .start-game button{
+    background-color: rgba(0, 0, 0, 0.8);;
+    color: white;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease-in;
+}
+
+.player-form .start-game button:hover{
+    background-color: black;
+}
+
 .game-board{
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon/favicon_1.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/f6fb301c7e.js" crossorigin="anonymous"></script>
     <title>Tic Tac Toe</title>
 </head>
 <body>
@@ -14,15 +15,17 @@
     <form action="#" class="player-form">
         <div class="input">
             <div>
-                <label for="player1">Player 1</label>
+                <label for="player1">Player 1:</label>
                 <input type="text" placeholder="Enter Name Here" id="player1"> 
             </div>
             <div>
-                <label for="player2">Player 2</label>
+                <label for="player2">Player 2:</label>
                 <input type="text" placeholder="Enter Name Here" id="player2"> 
             </div>
         </div>
-        <button type="submit">Start Game</button>
+        <div class="start-game">
+            <button type="submit">Start Game <i class="fa-solid fa-gamepad"></i></button>
+        </div>
     </form>
 
     <div class="game-board">
