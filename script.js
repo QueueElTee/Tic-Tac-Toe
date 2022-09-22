@@ -27,6 +27,9 @@ playerForm.addEventListener('submit', (e) => {
     let currentPlayer = document.querySelector('.current-player');
     currentPlayer.style.display = 'block';
     displayController.initializeDislpay();
+
+    document.querySelector('#player1').value = '';
+    document.querySelector('#player2').value = '';
 });
 
 const displayController = (() => {
