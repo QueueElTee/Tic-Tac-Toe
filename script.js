@@ -59,11 +59,7 @@ const displayController = (() => {
 
     const controlDisplay = (e) => {
         if(gameBoard.gameCounter >= 0){
-            if(gameBoard.gameCounter % 2 != 0){
-                validPlayerAlternations(e);
-            } else{
-                validPlayerAlternations(e);
-            }
+            validPlayerAlternations(e);
         }
     }
 
