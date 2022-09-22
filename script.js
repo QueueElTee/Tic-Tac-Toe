@@ -71,12 +71,16 @@ const displayController = (() => {
 
 let boardCells = document.querySelectorAll('.game-board *');
 boardCells.forEach(cell => cell.addEventListener('click', (e) => {
-    console.log(gameBoard.gameCounter);
-    displayController.controlDisplay(e);
-    console.log(e.target);
+    if(gameBoard.gameCounter > 0){
+        console.log(gameBoard.gameCounter);
+        displayController.controlDisplay(e);
+        console.log(e.target);
 
-    if(e.target.textContent != ''){
-        gameBoard.gameCounter++;
-        displayController.setName();
+        if(e.target.textContent != ''){
+            gameBoard.gameCounter++;
+            displayController.setName();
+        }
+    } else {
+        document.querySelector('#player1').focus();
     }
 }));
