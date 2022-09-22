@@ -26,39 +26,58 @@ playerForm.addEventListener('submit', (e) => {
 
     let currentPlayer = document.querySelector('.current-player');
     currentPlayer.style.display = 'block';
-    // let currentPlayerName = document.querySelector('.player-name');
-    currentPlayerName.textContent = `${player1.name}'s `;
-    // gameBoard.gameCounter++
+    displayController.initializeDislpay();
 });
 
 const displayController = (() => {
-    // const initializeDislpay = () => {
-    //     currentPlayerName.textContent = `${player1.name}'s `;
-    //     gameBoard.gameCounter++;
-    // }
+    const setName = () => {
+        currentPlayerName.textContent = gameBoard.gameCounter % 2 != 0 ? `${player1.name}'s ` : `${player2.name}'s `;
+        console.log(`In setName ${gameBoard.gameCounter}`)
+    }
+
+    const setMarker = () => {
+        let currentMarker = gameBoard.gameCounter % 2 != 0 ? `${player1.marker}` : `${player2.marker}`;
+        console.log(`In setMarker ${gameBoard.gameCounter}`)
+        return currentMarker;
+    }
+
+    const initializeDislpay = () => {
+        gameBoard.gameCounter = 1;
+        setName();
+        setMarker();
+    }
+
+    const validPlayerAlternations = (e) => {
+        setName();
+        if(e.target.textContent == ''){
+            e.target.textContent = setMarker();
+        } else {
+            gameBoard.gameCounter--;
+            console.log(`In valid player alternations ${gameBoard.gameCounter}`);
+        }
+    }
 
     const controlDisplay = (e) => {
-        // if (gameBoard.gameCounter == 1){
-
-        // }
-
-        if(gameBoard.gameCounter > 1){
+        if(gameBoard.gameCounter >= 0){
             if(gameBoard.gameCounter % 2 != 0){
-                currentPlayerName.textContent = `${player1.name}'s `;
-                e.target.textContent = 'X';
+                validPlayerAlternations(e);
             } else{
-                currentPlayerName.textContent = `${player2.name}'s `;
-                e.target.textContent = 'O';
+                validPlayerAlternations(e);
             }
         }
     }
-    return { controlDisplay }
+
+    return { setName, initializeDislpay, controlDisplay }
 })();
 
 let boardCells = document.querySelectorAll('.game-board *');
 boardCells.forEach(cell => cell.addEventListener('click', (e) => {
-    gameBoard.gameCounter++;
     console.log(gameBoard.gameCounter);
     displayController.controlDisplay(e);
     console.log(e.target);
+
+    if(e.target.textContent != ''){
+        gameBoard.gameCounter++;
+        displayController.setName();
+    }
 }));
