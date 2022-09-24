@@ -1,6 +1,5 @@
 let playerForm = document.querySelector('.player-form');
 let currentPlayer = document.querySelector('.current-player');
-//let currentPlayerName = document.querySelector('.player-name');
 let currentPlayerName = '';
 let player1 = '';
 let player2 = '';
