@@ -75,10 +75,14 @@ const displayController = (() => {
 
     const checkForAWin = (marker, player) => {
         const checkForAPattern = (spot1, spot2, spot3) => {
-            if(document.querySelector(`.${spot1}`).textContent == `${marker}`
-            && document.querySelector(`.${spot2}`).textContent == `${marker}` 
-            && document.querySelector(`.${spot3}`).textContent == `${marker}`){
+            let cell1 = document.querySelector(`.${spot1}`);
+            let cell2 = document.querySelector(`.${spot2}`);
+            let cell3 = document.querySelector(`.${spot3}`);
+            if(cell1.textContent == `${marker}` && cell2.textContent == `${marker}` && cell3.textContent == `${marker}`){
                 currentPlayer.textContent = `${player} wins the game.`;
+                cell1.style.cssText = 'background-color: #D3D3D3';
+                cell2.style.cssText = 'background-color: #D3D3D3';
+                cell3.style.cssText = 'background-color: #D3D3D3';
                 displayController.isThereAWinner = true;
                 console.log(isThereAWinner);
                 displayController.showPlayAgainButton();

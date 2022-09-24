@@ -41,7 +41,7 @@ h1{
 }
 
 .player-form .start-game button{
-    background-color: rgba(0, 0, 0, 0.8);;
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
     margin-top: 0.75rem;
     padding: 0.5rem 1rem;
@@ -80,7 +80,7 @@ h1{
 }
 
 .game-board *:hover{
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #D3D3D3;
 }
 
 .game-board .one, .game-board .two, .game-board .three{
