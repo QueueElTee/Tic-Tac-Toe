@@ -89,7 +89,11 @@ const displayController = (() => {
         checkForAPattern('three', 'five', 'seven');
     }
 
-    return { setName, initializeDislpay, controlDisplay, isThereAWinner, checkForAWin }
+    const itsATie = () => {
+        currentPlayer.textContent = `It's a tie.`;
+    }
+
+    return { setName, initializeDislpay, controlDisplay, isThereAWinner, checkForAWin, itsATie }
 })();
 
 let boardCells = document.querySelectorAll('.game-board *');
@@ -100,9 +104,11 @@ boardCells.forEach(cell => cell.addEventListener('click', (e) => {
         console.log(e.target);
         displayController.checkForAWin(player1.marker, player1.name);
         displayController.checkForAWin(player2.marker, player2.name);
-        if(gameBoard.gameCounter <= 9){
+        if(gameBoard.gameCounter <= 8){
             gameBoard.gameCounter++;
             displayController.setName();
+        } else if(displayController.isThereAWinner == false){
+            displayController.itsATie();
         }
     } else {
         document.querySelector('#player1').style.cssText = 'border: 2px solid black;';
