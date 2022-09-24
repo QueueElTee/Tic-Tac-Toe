@@ -75,12 +75,12 @@ boardCells.forEach(cell => cell.addEventListener('click', (e) => {
         console.log(gameBoard.gameCounter);
         displayController.controlDisplay(e);
         console.log(e.target);
-
         if(e.target.textContent != ''){
             gameBoard.gameCounter++;
             displayController.setName();
         }
     } else {
-        document.querySelector('#player1').focus();
+        document.querySelector('#player1').style.cssText = 'border: 2px solid black;';
+        document.querySelector('#player2').style.cssText = 'border: 2px solid black;';
     }
 }));
