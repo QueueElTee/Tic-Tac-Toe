@@ -1,6 +1,7 @@
 let playerForm = document.querySelector('.player-form');
 let currentPlayer = document.querySelector('.current-player');
-let currentPlayerName = document.querySelector('.player-name');
+//let currentPlayerName = document.querySelector('.player-name');
+let currentPlayerName = '';
 let player1 = '';
 let player2 = '';
 
@@ -34,7 +35,8 @@ playerForm.addEventListener('submit', (e) => {
 
 const displayController = (() => {
     const setName = () => {
-        currentPlayerName.textContent = gameBoard.gameCounter % 2 != 0 ? `${player1.name}'s ` : `${player2.name}'s `;
+        currentPlayerName = gameBoard.gameCounter % 2 != 0 ? `${player1.name}'s` : `${player2.name}'s`;
+        currentPlayer.textContent = `${currentPlayerName} Turn`;
         console.log(`In setName ${gameBoard.gameCounter}`)
     }
 
@@ -66,6 +68,10 @@ const displayController = (() => {
         }
     }
 
+    const showPlayAgainButton = () => {
+        document.querySelector('.play-again').style.display = 'block';
+    }
+
     let isThereAWinner = false;
 
     const checkForAWin = (marker, player) => {
@@ -76,6 +82,7 @@ const displayController = (() => {
                 currentPlayer.textContent = `${player} wins the game.`;
                 displayController.isThereAWinner = true;
                 console.log(isThereAWinner);
+                displayController.showPlayAgainButton();
             }
         }
 
@@ -93,7 +100,7 @@ const displayController = (() => {
         currentPlayer.textContent = `It's a tie.`;
     }
 
-    return { setName, initializeDislpay, controlDisplay, isThereAWinner, checkForAWin, itsATie }
+    return { setName, initializeDislpay, controlDisplay, isThereAWinner, checkForAWin, itsATie, showPlayAgainButton }
 })();
 
 let boardCells = document.querySelectorAll('.game-board *');
@@ -104,14 +111,30 @@ boardCells.forEach(cell => cell.addEventListener('click', (e) => {
         console.log(e.target);
         displayController.checkForAWin(player1.marker, player1.name);
         displayController.checkForAWin(player2.marker, player2.name);
-        if(gameBoard.gameCounter <= 8){
+        if(gameBoard.gameCounter <= 8 && displayController.isThereAWinner == false){
             gameBoard.gameCounter++;
             displayController.setName();
         } else if(displayController.isThereAWinner == false){
             displayController.itsATie();
+            displayController.showPlayAgainButton();
         }
     } else {
         document.querySelector('#player1').style.cssText = 'border: 2px solid black;';
         document.querySelector('#player2').style.cssText = 'border: 2px solid black;';
     }
 }));
+
+let restart = document.querySelector('.play-again');
+restart.addEventListener('click', () => {
+    gameBoard.gameCounter = 0;
+    displayController.isThereAWinner = false;
+    player1 = '';
+    player2 = '';
+    currentPlayer.textContent = '';
+    currentPlayer.style.display = 'none';
+    playerForm.style.display = 'block';
+    boardCells.forEach(cell => cell.textContent = '');
+    console.log(gameBoard.gameCounter);
+
+    restart.style.display = 'none';
+});
