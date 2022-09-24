@@ -98,3 +98,24 @@ h1{
 .game-board .three, .game-board .six, .game-board .nine{
     border-right: none;
 }
+
+.play-again{
+    text-align: center;
+    margin-top: 2rem;
+    display: none;
+}
+
+.play-again button{
+    background-color: rgba(0, 0, 0, 0.8);;
+    color: white;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease-in;
+    font-size: 1.15rem;
+}
+
+.play-again button:hover{
+    background-color: black;
+}
