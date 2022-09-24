@@ -1,4 +1,5 @@
 let playerForm = document.querySelector('.player-form');
+let currentPlayer = document.querySelector('.current-player');
 let currentPlayerName = document.querySelector('.player-name');
 let player1 = '';
 let player2 = '';
@@ -24,7 +25,6 @@ playerForm.addEventListener('submit', (e) => {
 
     playerForm.style.display = 'none';
 
-    let currentPlayer = document.querySelector('.current-player');
     currentPlayer.style.display = 'block';
     displayController.initializeDislpay();
 
@@ -66,16 +66,41 @@ const displayController = (() => {
         }
     }
 
-    return { setName, initializeDislpay, controlDisplay }
+    let isThereAWinner = false;
+
+    const checkForAWin = (marker, player) => {
+        const checkForAPattern = (spot1, spot2, spot3) => {
+            if(document.querySelector(`.${spot1}`).textContent == `${marker}`
+            && document.querySelector(`.${spot2}`).textContent == `${marker}` 
+            && document.querySelector(`.${spot3}`).textContent == `${marker}`){
+                currentPlayer.textContent = `${player} wins the game.`;
+                displayController.isThereAWinner = true;
+                console.log(isThereAWinner);
+            }
+        }
+
+        checkForAPattern('one', 'two', 'three');
+        checkForAPattern('four', 'five', 'six');
+        checkForAPattern('seven', 'eight', 'nine');
+        checkForAPattern('one', 'four', 'seven');
+        checkForAPattern('two', 'five', 'eight');
+        checkForAPattern('three', 'six', 'nine');
+        checkForAPattern('one', 'five', 'nine');
+        checkForAPattern('three', 'five', 'seven');
+    }
+
+    return { setName, initializeDislpay, controlDisplay, isThereAWinner, checkForAWin }
 })();
 
 let boardCells = document.querySelectorAll('.game-board *');
 boardCells.forEach(cell => cell.addEventListener('click', (e) => {
-    if(gameBoard.gameCounter > 0){
+    if(gameBoard.gameCounter > 0 && displayController.isThereAWinner == false){
         console.log(gameBoard.gameCounter);
         displayController.controlDisplay(e);
         console.log(e.target);
-        if(e.target.textContent != ''){
+        displayController.checkForAWin(player1.marker, player1.name);
+        displayController.checkForAWin(player2.marker, player2.name);
+        if(gameBoard.gameCounter <= 9){
             gameBoard.gameCounter++;
             displayController.setName();
         }
