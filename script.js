@@ -9,9 +9,8 @@ const player = (name, marker) => {
 }
 
 const gameBoard = (() => {
-    let board = [];
     let gameCounter = 0;
-    return { board, gameCounter };
+    return { gameCounter };
 })();
 
 playerForm.addEventListener('submit', (e) => {
