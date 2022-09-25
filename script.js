@@ -35,12 +35,10 @@ const displayController = (() => {
     const setName = () => {
         currentPlayerName = gameBoard.gameCounter % 2 != 0 ? `${player1.name}'s` : `${player2.name}'s`;
         currentPlayer.textContent = `${currentPlayerName} Turn`;
-        console.log(`In setName ${gameBoard.gameCounter}`)
     }
 
     const setMarker = () => {
         let currentMarker = gameBoard.gameCounter % 2 != 0 ? `${player1.marker}` : `${player2.marker}`;
-        console.log(`In setMarker ${gameBoard.gameCounter}`)
         return currentMarker;
     }
 
@@ -56,7 +54,6 @@ const displayController = (() => {
             e.target.textContent = setMarker();
         } else {
             gameBoard.gameCounter--;
-            console.log(`In valid player alternations ${gameBoard.gameCounter}`);
         }
     }
 
@@ -83,7 +80,6 @@ const displayController = (() => {
                 cell2.style.cssText = 'background-color: #D3D3D3';
                 cell3.style.cssText = 'background-color: #D3D3D3';
                 displayController.isThereAWinner = true;
-                console.log(isThereAWinner);
                 displayController.showPlayAgainButton();
             }
         }
@@ -108,9 +104,7 @@ const displayController = (() => {
 let boardCells = document.querySelectorAll('.game-board *');
 boardCells.forEach(cell => cell.addEventListener('click', (e) => {
     if(gameBoard.gameCounter > 0 && displayController.isThereAWinner == false){
-        console.log(gameBoard.gameCounter);
         displayController.controlDisplay(e);
-        console.log(e.target);
         displayController.checkForAWin(player1.marker, player1.name);
         displayController.checkForAWin(player2.marker, player2.name);
         if(gameBoard.gameCounter <= 8 && displayController.isThereAWinner == false){
@@ -139,7 +133,5 @@ restart.addEventListener('click', () => {
         cell.textContent = '';
         cell.style.backgroundColor = 'white';
     });
-    console.log(gameBoard.gameCounter);
-
     restart.style.display = 'none';
 });
