@@ -119,3 +119,45 @@ h1{
 .play-again button:hover{
     background-color: black;
 }
+
+
+/* Media Queries */
+@media(max-width: 1240px){
+    .player-form .input{
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+@media(max-width: 950px){
+    .game-board, .player-form .input{
+        width: 80%;
+    }
+}
+
+@media(max-width: 810px){
+    h1{
+        font-size: 2.75rem;
+    }
+}
+
+@media(max-width: 430px){
+    /* h1{
+        font-size: 2.75rem;
+    } */
+    .current-player{
+        font-size: 1.75rem;
+    }
+
+    .game-board, .player-form .input{
+        width: 90%;
+    }
+
+    .game-board *{
+        height: 7rem;
+        font-size: 4.4rem;
+        padding: 0.45rem 0;
+    }
+}
