@@ -136,7 +136,10 @@ restart.addEventListener('click', () => {
     currentPlayer.textContent = '';
     currentPlayer.style.display = 'none';
     playerForm.style.display = 'block';
-    boardCells.forEach(cell => cell.textContent = '');
+    boardCells.forEach(cell => {
+        cell.textContent = '';
+        cell.style.backgroundColor = 'white';
+    });
     console.log(gameBoard.gameCounter);
 
     restart.style.display = 'none';
